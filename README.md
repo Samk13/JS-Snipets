@@ -1,9 +1,4 @@
 # JavaScript-snippets
-<img src="Logo.png" alt="JS snippets logo">
-
-# JSsnippets on Facebook
-
-find us on [Facebook](https://www.facebook.com/snippetsJS)
 
 
 # How to generate a random number in a given range
