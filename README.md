@@ -1,6 +1,20 @@
 # JavaScript-snippets
 
 
+# arrayToHtmlList
+
+converts the elements of an array into <li> tags and appends them to the list of the given ID.
+```javascript
+const arrayToHtmlList = (arr, listID) =>
+  (el => (
+    (el = document.querySelector('#' + listID)),
+    (el.innerHTML += arr.map(item => `<li>${item}</li>`).join(''))
+  ))();
+  
+arrayToHtmlList(['item 1', 'item 2'], 'myListID');
+```
+
+
 # How to generate a random number in a given range
 
 ```javascript
