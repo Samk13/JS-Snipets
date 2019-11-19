@@ -1,9 +1,94 @@
 # JavaScript-snippets
 
+#dayOfYear
+This snippet gets the day of the year from a Dateobject.
+
+```javascript
+const dayOfYear = date =>
+  Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+
+dayOfYear(new Date());
+```
+
+# Get Time From Date
+This snippet can be used to get the time from a Dateobject as a string.
+```javascript
+const getColonTimeFromDate = date => date.toTimeString().slice(0, 8);
+
+getColonTimeFromDate(new Date()); // "08:38:00"
+```
+
+Get Days Between Dates
+This snippet can be used to find the difference in days between two dates.
+```javascript
+const getDaysDiffBetweenDates = (dateInitial, dateFinal) =>
+  (dateFinal - dateInitial) / (1000 * 3600 * 24);
+  
+getDaysDiffBetweenDates(new Date('2019-01-13'), new Date('2019-01-15')); // 2
+```
+
+# Random Hexadecimal Color Code
+This snippet can be used to generate a random hexadecimal color code.
+```javascript
+const randomHexColorCode = () => {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16);
+  return '#' + n.slice(0, 6);
+};
+
+randomHexColorCode(); // "#e34155"
+```
+
+# scrollToTop
+This snippet can be used to do a smooth scroll to the top of the current page.
+```javascript
+const scrollToTop = () => {
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  if (c > 0) {
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, c - c / 8);
+  }
+};
+
+scrollToTop();
+```
+
+# stripHTMLTags
+
+This snippet can be used to remove HTML/XML tags from a string.
+```javascript
+const stripHTMLTags = str => str.replace(/<[^>]*>/g, '');
+
+stripHTMLTags('<p><em>lorem</em> <strong>ipsum</strong></p>'); // 'lorem ipsum'
+```
+# difference
+This snippet finds the difference between two arrays.
+
+```javascript
+const difference = (a, b) => {
+  const s = new Set(b);
+  return a.filter(x => !s.has(x));
+};
+
+difference([1, 2, 3], [1, 2, 4]); // [3]
+```
+
+
+# functionName
+
+This snippet prints the name of a function into the console.
+
+```javascript
+
+const functionName = fn => (console.debug(fn.name), fn);
+
+functionName(Math.max); // max (logged in debug channel of console)
+```
+
 
 # arrayToHtmlList
 
 converts the elements of an array into <li> tags and appends them to the list of the given ID.
+  
 ```javascript
 const arrayToHtmlList = (arr, listID) =>
   (el => (
@@ -14,7 +99,18 @@ const arrayToHtmlList = (arr, listID) =>
 arrayToHtmlList(['item 1', 'item 2'], 'myListID');
 ```
 
-
+# toCurrency
+This snippet can be used to format a number like a currency.
+```javascript
+const toCurrency = (n, curr, LanguageFormat = undefined) =>
+  Intl.NumberFormat(LanguageFormat, { style: 'currency', currency: curr }).format(n);
+  
+toCurrency(123456.789, 'EUR'); // €123,456.79  | currency: Euro | currencyLangFormat: Local
+toCurrency(123456.789, 'USD', 'en-us'); // $123,456.79  | currency: US Dollar | currencyLangFormat: English (United States)
+toCurrency(123456.789, 'USD', 'fa'); // ۱۲۳٬۴۵۶٫۷۹ ؜$ | currency: US Dollar | currencyLangFormat: Farsi
+toCurrency(322342436423.2435, 'JPY'); // ¥322,342,436,423 | currency: Japanese Yen | currencyLangFormat: Local
+toCurrency(322342436423.2435, 'JPY', 'fi'); // 322 342 436 423 ¥ | currency: Japanese Yen | currencyLangFormat: Finnish
+```
 # How to generate a random number in a given range
 
 ```javascript
